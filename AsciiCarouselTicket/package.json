@@ -1,0 +1,13 @@
+{
+  "name": "AsciiCarouselTicket",
+  "version": "1.0.0",
+  "description": "Visual Ascii Carousel",
+  "main": "index.js",
+  "repository": "https://github.com/as43z/Hygge/AsciiCarouselTicket",
+  "author": "Albert Sáez",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "p5": "^1.9.0"
+  }
+}
