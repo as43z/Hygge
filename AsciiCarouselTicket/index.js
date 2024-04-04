@@ -37,15 +37,26 @@ class CircularQueue {
         this.cursor = 0;
     }
 
+    /**
+     * Append an item into the CircularQueue
+     * @param {any} item 
+     */
     append(item) {
         this.items.push(item);
         this.size++;
     }
 
+    /**
+     * Wrapper for append(item) 
+     * @param {any} item 
+     */
     push(item) {
         this.append(item);
     }
 
+    /**
+     * Get the next item in the Queue.
+     */
     next() {
         if (this.size == 0) return null;
         let item = this.items[this.cursor];
@@ -98,7 +109,6 @@ function asciiCarousel() {
 function loader() {
     if (!sketchReady)
             return;
-    console.log(images.next())
     runner = asciiCarousel;
 }
 
@@ -106,12 +116,27 @@ function mapToAscii() {
     throw Error("AsciiCarouselTicket: Not implemented.");
 }
 
+function blobToP5(blob) {
+    console.log('AsciiCarouselTicket: blobToP5');
+    return blob.arrayBuffer().then(
+        (ok) => {
+            console.log('AsciiCarouselTicket: blob.arrayBuffer()')
+            return 'data:' + blob.type + ';base64,' + btoa(ok);
+        }
+    );
+}
+
 let runner = loader;
 function preload() {
     fetchImage("/static/bestDog.jpg").then((blob) => {
-            console.log(blob.text().then((data) => {console.log(data)}))
-            loadImage(blob.type, (nImg) => {images.push(nImg);});
-            sketchReady = true;
+            blobToP5(blob).then(
+                (ok) => {
+                    console.log('AsciiCarouselTicket: blobToP5 resolved.')
+                    result = loadImage(ok);
+                    images.append(result);
+                    sketchReady = true;
+                }
+            )
         }).catch((err) => {
             runner = couldNotLoad;
     });
