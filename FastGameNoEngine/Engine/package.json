@@ -1,0 +1,21 @@
+{
+  "name": "engine",
+  "version": "1.0.0",
+  "description": "Game Engine for HTML browser games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "tsc",
+    "compact": "rollup -c rollup.config.js --bundleConfigAsCjs",
+    "build": "npm run transpile && npm run compact"
+  },
+  "keywords": [
+    "game-engine",
+    "game-dev"
+  ],
+  "author": "as43z",
+  "license": "MIT",
+  "dependencies": {
+    "rollup": "^4.14.0"
+  }
+}
