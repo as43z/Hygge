@@ -1,0 +1,4 @@
+node_modules/
+Distribution/
+Transpiled/
+package-lock.json
