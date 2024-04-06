@@ -1,5 +1,4 @@
 <!doctype html>
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -28,20 +27,30 @@
 			border: 2px;
 			border-style: dashed;
 			border-color: coral;
-			height: 90%;
-			width: 50%;
+			height: fit-content;
+			width: fit-content;
 			padding: 2px;
 		}
 
 	</style>
 </head>
 <body>
-	<script type="text/javascript">
-		let game = engine();
-		game.makeRun();
-	</script>
 	<div class="game-panel" id="game-panel">
-		<canvas style="height: 100%; width: 100%;" id="game-canvas">
+		<canvas id="game-canvas"></canvas>
 	</div>
+	<script type="text/javascript">
+		let gameEngine = engine();
+		// interface Context {
+		// 	readonly canvas: UndefinedOr<HTMLCanvasElement>;
+		// 	gameResolution: GameResolution;
+		// }
+		gameEngine.init({
+			canvas: document.getElementById('game-canvas'),
+			gameResolution: new gameEngine.GameResolution({
+				aspectRatio: gameEngine.AspectRatios.THREE_HALVES,
+				dimensions: gameEngine.aspectRatioToDimensions.get(gameEngine.AspectRatios.THREE_HALVES)[0]
+			})
+		});
+	</script>
 </body>
 </html>

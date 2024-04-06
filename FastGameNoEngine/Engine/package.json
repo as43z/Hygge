@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpile": "tsc",
-    "compact": "rollup -c rollup.config.js --bundleConfigAsCjs",
-    "build": "npm run transpile && npm run compact"
+    "compact:browser": "rollup -c Build/rollup-browser.config.js --bundleConfigAsCjs",
+    "build:browser": "npm run transpile && npm run compact:browser"
   },
   "keywords": [
     "game-engine",
