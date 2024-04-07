@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="favicon.ico">
 	<script src="Engine/Distribution/engine.bundled.js"></script>
 	<title>Game</title>
 
@@ -39,18 +40,25 @@
 		<canvas id="game-canvas"></canvas>
 	</div>
 	<script type="text/javascript">
-		let gameEngine = engine();
-		// interface Context {
-		// 	readonly canvas: UndefinedOr<HTMLCanvasElement>;
-		// 	gameResolution: GameResolution;
-		// }
-		gameEngine.init({
+		game = Engine.game;
+
+		class MainScene extends Engine.Scene {
+			init() {
+				game.gameContext.canvasCtx.fillStyle = "black";
+				game.gameContext.canvasCtx.rect(0, 0, game.gameContext.resolution.dimensions.width, game.gameContext.resolution.dimensions.height);
+				game.gameContext.canvasCtx.fill();
+				game.gameState.state = Engine.GameLogicState.LOADING_TO;
+			}
+		}
+
+		let main = new MainScene();
+
+		game.init({
 			canvas: document.getElementById('game-canvas'),
-			gameResolution: new gameEngine.GameResolution({
-				aspectRatio: gameEngine.AspectRatios.THREE_HALVES,
-				dimensions: gameEngine.aspectRatioToDimensions.get(gameEngine.AspectRatios.THREE_HALVES)[0]
-			})
-		});
+			scene: main,
+		})
+		console.log(game);
+		game.run();
 	</script>
 </body>
 </html>

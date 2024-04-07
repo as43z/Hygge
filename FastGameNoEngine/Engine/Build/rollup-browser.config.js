@@ -3,6 +3,6 @@ export default {
 	output: {
 		file: "./Distribution/engine.bundled.js",
 		format: "iife",
-		name: "engine",
+		name: "window.Engine",
 	}
 }
